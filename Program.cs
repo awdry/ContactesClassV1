@@ -87,7 +87,9 @@ static void AddContacts(List<int> ids, Dictionary<int, string> names, Dictionary
     string email = Console.ReadLine() ?? "";
     Console.WriteLine("Digite la edad de la persona en números");
     int age = Convert.ToInt32(Console.ReadLine());
+    Console.ForegroundColor = ConsoleColor.Magenta;
     Console.WriteLine("Especifique si es mejor amigo: 1. Si, 2. No");
+    Console.ResetColor();
 
     bool isBestFriend = Convert.ToInt32(Console.ReadLine()) == 1;
 
@@ -118,7 +120,7 @@ static void ShowContacts(List<int> ids, Dictionary<int, string> names, Dictionar
     {
         if (ids.Count == 0)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("No hay contactos para mostrar.");
             Console.ResetColor();
             return;
@@ -200,7 +202,9 @@ int id = Convert.ToInt32(Console.ReadLine());
 
 if (!ids.Contains(id))
 {
+    Console.ForegroundColor = ConsoleColor.Red;
     Console.WriteLine("ID no encontrado.");
+    Console.ResetColor();
     return;
 }
 
@@ -234,7 +238,10 @@ Console.WriteLine($"Mejor Amigo actual: {(bestFriends [id] ? "Sí" : "No")}");
 input = Console.ReadLine() ?? "";
 if (string.IsNullOrWhiteSpace(input)) bestFriends[id] = Convert.ToInt32(input) == 1;
 
+Console.ForegroundColor = ConsoleColor.DarkGreen;
 Console.WriteLine("Contacto modificado exitosamente.");
+Console.ResetColor();
+
     }
     catch (Exception ex)
     {
@@ -256,21 +263,24 @@ static void DeleteContacts(List<int> ids, Dictionary<int, string> names, Diction
             return;
         }
 
+        Console.WriteLine("\n============================\n"); 
+
         ShowContacts(ids, names, lastnames, addresses, telephones, emails, ages, bestFriends);
+
+        Console.WriteLine("\n============================\n"); 
         
         Console.WriteLine("Digite el ID del contacto que desea eliminar:");
         int id = Convert.ToInt32(Console.ReadLine());
 
         if (!ids.Contains(id))
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("ID no encontrado.");
             Console.ResetColor();
             return;
         }
 
-        Console.BackgroundColor = ConsoleColor.Yellow;
-        Console.ForegroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine($"¿Estás seguro de que desea eliminar a {names[id]} {lastnames[id]}? 1. Sí, 2. No");
         Console.ResetColor();
         int confirmation = Convert.ToInt32(Console.ReadLine());
@@ -294,8 +304,7 @@ static void DeleteContacts(List<int> ids, Dictionary<int, string> names, Diction
 
     else
     {
-        Console.BackgroundColor = ConsoleColor.Yellow;
-        Console.ForegroundColor = ConsoleColor.Red;
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine("Eliminación cancelada.");
         Console.ResetColor();
     }
