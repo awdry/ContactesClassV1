@@ -164,6 +164,8 @@ static void SearchContacts(List<int> ids, Dictionary<int, string> names, Diction
             return;
         }
 
+        Console.WriteLine("\n============================\n"); 
+
         foreach (var id in foundContacts)
         {
             Console.WriteLine($"ID: {id}");
@@ -197,6 +199,7 @@ static void ModifyContacts(List<int> ids, Dictionary<int, string> names, Diction
             return;
         }
 
+Console.WriteLine("\n============================\n"); 
 ShowContacts(ids, names, lastnames, addresses, telephones, emails, ages, bestFriends);
 int id = Convert.ToInt32(Console.ReadLine());
 
@@ -236,7 +239,7 @@ if (!string.IsNullOrWhiteSpace(input)) ages[id] = Convert.ToInt32(input);
 
 Console.WriteLine($"Mejor Amigo actual: {(bestFriends [id] ? "Sí" : "No")}");
 input = Console.ReadLine() ?? "";
-if (string.IsNullOrWhiteSpace(input)) bestFriends[id] = Convert.ToInt32(input) == 1;
+if (!string.IsNullOrWhiteSpace(input)) bestFriends[id] = Convert.ToInt32(input) == 1;
 
 Console.ForegroundColor = ConsoleColor.DarkGreen;
 Console.WriteLine("Contacto modificado exitosamente.");
@@ -266,8 +269,6 @@ static void DeleteContacts(List<int> ids, Dictionary<int, string> names, Diction
         Console.WriteLine("\n============================\n"); 
 
         ShowContacts(ids, names, lastnames, addresses, telephones, emails, ages, bestFriends);
-
-        Console.WriteLine("\n============================\n"); 
         
         Console.WriteLine("Digite el ID del contacto que desea eliminar:");
         int id = Convert.ToInt32(Console.ReadLine());
@@ -300,6 +301,7 @@ static void DeleteContacts(List<int> ids, Dictionary<int, string> names, Diction
 
         Console.ForegroundColor = ConsoleColor.DarkGreen;
         Console.WriteLine("Contacto eliminado exitosamente.");
+        Console.ResetColor();
     }
 
     else
