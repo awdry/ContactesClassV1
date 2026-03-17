@@ -165,3 +165,60 @@ static void SearchContacts(List<int> ids, Dictionary<int, string> names, Diction
     }
 }
 
+static void ModifyContacts(List<int> ids, Dictionary<int, string> names, Dictionary<int, string> lastnames, Dictionary<int, string> addresses, Dictionary<int, string> telephones, Dictionary<int, string> emails, Dictionary<int, int> ages, Dictionary<int, bool> bestFriends)
+{
+    try
+    { 
+        if (ids.Count == 0)
+        {
+            Console.WriteLine("No hay contactos registrados");
+            return;
+        }
+
+ShowContacts(ids, names, lastnames, addresses, telephones, emails, ages, bestFriends);
+int id = Convert.ToInt32(Console.ReadLine());
+
+if (!ids.Contains(id))
+{
+    Console.WriteLine("ID no encontrado.");
+    return;
+}
+
+Console.WriteLine("(Presione Enter para mantener el valor actual)");
+
+Console.WriteLine($"Nombre actual: {names[id]}");
+string input = Console.ReadLine() ?? "";
+if (!string.IsNullOrWhiteSpace(input)) names[id] = input;
+
+Console.WriteLine($"Apellido actual: {lastnames[id]}");
+input = Console.ReadLine() ?? "";
+if (!string.IsNullOrWhiteSpace(input)) lastnames[id] = input;
+
+Console.WriteLine($"Dirección actual: {addresses[id]}");
+input = Console.ReadLine() ?? "";
+if (!string.IsNullOrWhiteSpace(input)) addresses[id] = input;
+
+Console.WriteLine($"Telefóno actual: {telephones[id]}");
+input = Console.ReadLine() ?? "";
+if (!string.IsNullOrWhiteSpace(input)) telephones[id] = input;
+
+Console.WriteLine($"Email actual: {emails[id]}");
+input = Console.ReadLine() ?? "";
+if (!string.IsNullOrWhiteSpace(input)) emails[id] = input;
+
+Console.WriteLine($"Edad actual: {ages[id]}");
+input = Console.ReadLine() ?? "";
+if (!string.IsNullOrWhiteSpace(input)) ages[id] = Convert.ToInt32(input);
+
+Console.WriteLine($"Mejor Amigo actual: {(bestFriends [id] ? "Sí" : "No")}");
+input = Console.ReadLine() ?? "";
+if (string.IsNullOrWhiteSpace(input)) bestFriends[id] = Convert.ToInt32(input) == 1;
+
+Console.WriteLine("Contacto modificado exitosamente.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Ocurrió un error al modificar el contacto: " + ex.Message);
+    }
+}
+
