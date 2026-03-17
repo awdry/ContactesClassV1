@@ -130,3 +130,38 @@ static void ShowContacts(List<int> ids, Dictionary<int, string> names, Dictionar
         Console.WriteLine("Ocurrió un error al mostrar los contactos: " + ex.Message);
     }
 }
+
+static void SearchContacts(List<int> ids, Dictionary<int, string> names, Dictionary<int, string> lastnames, Dictionary<int, string> addresses, Dictionary<int, string> telephones, Dictionary<int, string> emails, Dictionary<int, int> ages, Dictionary<int, bool> bestFriends)
+{
+    try
+    {
+        Console.WriteLine("Digite el nombre o apellido del contacto que desea buscar:");
+        string searchTerm = Console.ReadLine() ?? "";
+
+        var foundContacts = ids.Where(id => names[id].Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || lastnames[id].Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+
+        if (foundContacts.Count == 0)
+        {
+            Console.WriteLine("No se encontraron contactos con ese nombre o apellido.");
+            return;
+        }
+
+        foreach (var id in foundContacts)
+        {
+            Console.WriteLine($"ID: {id}");
+            Console.WriteLine($"Nombre: {names[id]}");
+            Console.WriteLine($"Apellido: {lastnames[id]}");
+            Console.WriteLine($"Dirección: {addresses[id]}");
+            Console.WriteLine($"Teléfono: {telephones[id]}");
+            Console.WriteLine($"Email: {emails[id]}");
+            Console.WriteLine($"Edad: {ages[id]}");
+            Console.WriteLine($"Mejor Amigo: {(bestFriends[id] ? "Sí" : "No")}");
+            Console.WriteLine("-----------------------------");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Ocurrió un error al buscar los contactos: " + ex.Message);
+    }
+}
+
