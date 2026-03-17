@@ -58,6 +58,9 @@ while (runing)
             }
             break;
         case 6:
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine("Gracias por usar mi lista de contactos, hasta luego!");
+        Console.ResetColor();
             runing = false;
             break;
        } 
@@ -272,7 +275,7 @@ static void DeleteContacts(List<int> ids, Dictionary<int, string> names, Diction
         }
 
         Console.WriteLine("\n============================\n"); 
-        
+
         ShowContacts(ids, names, lastnames, addresses, telephones, emails, ages, bestFriends);
         
         Console.WriteLine("Digite el ID del contacto que desea eliminar:");
