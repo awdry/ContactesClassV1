@@ -100,3 +100,33 @@ static void AddContacts(List<int> ids, Dictionary<int, string> names, Dictionary
     }
 
 }
+
+
+static void ShowContacts(List<int> ids, Dictionary<int, string> names, Dictionary<int, string> lastnames, Dictionary<int, string> addresses, Dictionary<int, string> telephones, Dictionary<int, string> emails, Dictionary<int, int> ages, Dictionary<int, bool> bestFriends)
+{
+    try
+    {
+        if (ids.Count == 0)
+        {
+            Console.WriteLine("No hay contactos para mostrar.");
+            return;
+        }
+
+        foreach (var id in ids)
+        {
+            Console.WriteLine($"ID: {id}");
+            Console.WriteLine($"Nombre: {names[id]}");
+            Console.WriteLine($"Apellido: {lastnames[id]}");
+            Console.WriteLine($"Dirección: {addresses[id]}");
+            Console.WriteLine($"Teléfono: {telephones[id]}");
+            Console.WriteLine($"Email: {emails[id]}");
+            Console.WriteLine($"Edad: {ages[id]}");
+            Console.WriteLine($"Mejor Amigo: {(bestFriends[id] ? "Sí" : "No")}");
+            Console.WriteLine("-----------------------------");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Ocurrió un error al mostrar los contactos: " + ex.Message);
+    }
+}
