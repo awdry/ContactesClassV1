@@ -222,3 +222,56 @@ Console.WriteLine("Contacto modificado exitosamente.");
     }
 }
 
+static void DeleteContacts(List<int> ids, Dictionary<int, string> names, Dictionary<int, string> lastnames, Dictionary<int, string> addresses, Dictionary<int, string> telephones, Dictionary<int, string> emails, Dictionary<int, int> ages, Dictionary<int, bool> bestFriends)
+{
+    try
+    {
+        if (ids.Count == 0)
+        {
+            Console.WriteLine("No hay contactos registrados");
+            return;
+        }
+
+        ShowContacts(ids, names, lastnames, addresses, telephones, emails, ages, bestFriends);
+        
+        Console.WriteLine("Digite el ID del contacto que desea eliminar:");
+        int id = Convert.ToInt32(Console.ReadLine());
+
+        if (!ids.Contains(id))
+        {
+            Console.WriteLine("ID no encontrado.");
+            return;
+        }
+
+        Console.WriteLine($"¿Estás seguro de que desea eliminar a {names[id]} {lastnames[id]}? 1. Sí, 2. No");
+        int confirmation = Convert.ToInt32(Console.ReadLine());
+
+        if (confirmation == 1)
+        {
+
+        //elimina todos los diccionarios y la listade ids
+        ids.Remove(id);
+        names.Remove(id);
+        lastnames.Remove(id);
+        addresses.Remove(id);
+        telephones.Remove(id);
+        emails.Remove(id);
+        ages.Remove(id);
+        bestFriends.Remove(id);
+
+        Console.WriteLine("Contacto eliminado exitosamente.");
+    }
+
+    else
+    {
+        Console.WriteLine("Eliminación cancelada.");
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Ocurrió un error al eliminar el contacto: " + ex.Message);
+}
+
+}
+
+Console.ReadKey();
