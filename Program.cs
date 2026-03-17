@@ -16,7 +16,13 @@ Dictionary<int, bool> bestFriends = new Dictionary<int, bool>();
 
 while (runing)
 {
-    Console.WriteLine(@"1. Agregar Contacto     2. Ver Contactos    3. Buscar Contactos     4. Modificar Contacto   6. Eliminar Contacto    6. Salir");
+    Console.WriteLine("1. Agregar Contacto");
+    Console.WriteLine("2. Ver Contactos");
+    Console.WriteLine("3. Buscar Contactos");
+    Console.WriteLine("4. Modificar Contacto");
+    Console.WriteLine("5. Eliminar Contacto");
+    Console.WriteLine("6. Salir");
+    
     Console.WriteLine("Digite el número de la opción deseada");
 
     try
@@ -96,7 +102,9 @@ static void AddContacts(List<int> ids, Dictionary<int, string> names, Dictionary
 
     catch (Exception ex)
     {
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Ocurrió un error al agregar el contacto: " + ex.Message);
+        Console.ResetColor();
     }
 
 }
