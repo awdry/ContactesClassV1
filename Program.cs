@@ -201,6 +201,7 @@ static void ModifyContacts(List<int> ids, Dictionary<int, string> names, Diction
 
 Console.WriteLine("\n============================\n"); 
 ShowContacts(ids, names, lastnames, addresses, telephones, emails, ages, bestFriends);
+Console.WriteLine("Digite el ID del contacto que desea modificar");
 int id = Convert.ToInt32(Console.ReadLine());
 
 if (!ids.Contains(id))
