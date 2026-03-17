@@ -64,7 +64,9 @@ while (runing)
     }
     catch (Exception ex)
     {
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Ocurrió un error: " + ex.Message);
+        Console.ResetColor();
     }
 }
 
@@ -116,7 +118,9 @@ static void ShowContacts(List<int> ids, Dictionary<int, string> names, Dictionar
     {
         if (ids.Count == 0)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("No hay contactos para mostrar.");
+            Console.ResetColor();
             return;
         }
 
@@ -135,7 +139,9 @@ static void ShowContacts(List<int> ids, Dictionary<int, string> names, Dictionar
     }
     catch (Exception ex)
     {
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Ocurrió un error al mostrar los contactos: " + ex.Message);
+        Console.ResetColor();
     }
 }
 
@@ -150,7 +156,9 @@ static void SearchContacts(List<int> ids, Dictionary<int, string> names, Diction
 
         if (foundContacts.Count == 0)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("No se encontraron contactos con ese nombre o apellido.");
+            Console.ResetColor();
             return;
         }
 
@@ -169,7 +177,9 @@ static void SearchContacts(List<int> ids, Dictionary<int, string> names, Diction
     }
     catch (Exception ex)
     {
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Ocurrió un error al buscar los contactos: " + ex.Message);
+        Console.ResetColor();
     }
 }
 
@@ -179,7 +189,9 @@ static void ModifyContacts(List<int> ids, Dictionary<int, string> names, Diction
     { 
         if (ids.Count == 0)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("No hay contactos registrados");
+            Console.ResetColor();
             return;
         }
 
@@ -226,7 +238,9 @@ Console.WriteLine("Contacto modificado exitosamente.");
     }
     catch (Exception ex)
     {
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Ocurrió un error al modificar el contacto: " + ex.Message);
+        Console.ResetColor();
     }
 }
 
@@ -236,7 +250,9 @@ static void DeleteContacts(List<int> ids, Dictionary<int, string> names, Diction
     {
         if (ids.Count == 0)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("No hay contactos registrados");
+            Console.ResetColor();
             return;
         }
 
@@ -247,11 +263,16 @@ static void DeleteContacts(List<int> ids, Dictionary<int, string> names, Diction
 
         if (!ids.Contains(id))
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("ID no encontrado.");
+            Console.ResetColor();
             return;
         }
 
+        Console.BackgroundColor = ConsoleColor.Yellow;
+        Console.ForegroundColor = ConsoleColor.Black;
         Console.WriteLine($"¿Estás seguro de que desea eliminar a {names[id]} {lastnames[id]}? 1. Sí, 2. No");
+        Console.ResetColor();
         int confirmation = Convert.ToInt32(Console.ReadLine());
 
         if (confirmation == 1)
@@ -267,17 +288,23 @@ static void DeleteContacts(List<int> ids, Dictionary<int, string> names, Diction
         ages.Remove(id);
         bestFriends.Remove(id);
 
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
         Console.WriteLine("Contacto eliminado exitosamente.");
     }
 
     else
     {
+        Console.BackgroundColor = ConsoleColor.Yellow;
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Eliminación cancelada.");
+        Console.ResetColor();
     }
 }
 catch (Exception ex)
 {
+    Console.ForegroundColor = ConsoleColor.Red;
     Console.WriteLine("Ocurrió un error al eliminar el contacto: " + ex.Message);
+    Console.ResetColor();
 }
 
 }
