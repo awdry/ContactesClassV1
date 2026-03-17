@@ -62,3 +62,41 @@ while (runing)
     }
 }
 
+//Metodos
+
+static void AddContacts(List<int> ids, Dictionary<int, string> names, Dictionary<int, string> lastnames, Dictionary<int, string> addresses, Dictionary<int, string> telephones, Dictionary<int, string> emails, Dictionary<int, int> ages, Dictionary<int, bool> bestFriends)
+{
+    try{
+    Console.WriteLine("Digite el nombre de la persona");
+    string name = Console.ReadLine() ?? "";
+    Console.WriteLine("Digite el apellido de la persona");
+    string lastname = Console.ReadLine() ?? "";
+    Console.WriteLine("Digite la dirección");
+    string address = Console.ReadLine() ?? "";
+    Console.WriteLine("Digite el telefono de la persona");
+    string phone = Console.ReadLine() ?? "";
+    Console.WriteLine("Digite el email de la persona");
+    string email = Console.ReadLine() ?? "";
+    Console.WriteLine("Digite la edad de la persona en números");
+    int age = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine("Especifique si es mejor amigo: 1. Si, 2. No");
+
+    bool isBestFriend = Convert.ToInt32(Console.ReadLine()) == 1;
+
+    var id = ids.Count + 1;
+    ids.Add(id);
+    names.Add(id, name);
+    lastnames.Add(id, lastname);
+    addresses.Add(id, address);
+    telephones.Add(id, phone);
+    emails.Add(id, email);
+    ages.Add(id, age);
+    bestFriends.Add(id, isBestFriend);
+    }
+
+    catch (Exception ex)
+    {
+        Console.WriteLine("Ocurrió un error al agregar el contacto: " + ex.Message);
+    }
+
+}
